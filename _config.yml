@@ -64,8 +64,8 @@ kramdown:
 # Gitalk Gitalk国内较快
 gitalk:
   enable: true                          #是否开启Gitalk评论
-  clientID: 5eb73454f92a7c0469db                            #生成的clientID
-  clientSecret: 6811c70617bb01ad379c1685b52dee15727c13c0    #生成的clientSecret
+  clientID: 81ae4e28e4e2bde026c4                            #生成的clientID
+  clientSecret: 336997790f4f88ed079c22ff415f8643ef802680    #生成的clientSecret
   repo: fengdis.github.io               #仓库名称
   owner: fengdis                        #github用户名
   admin: fengdis                        #仓库管理员（可配置多个）
