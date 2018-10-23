@@ -282,3 +282,47 @@
 </script>
 {% endif %}
 
+<!-- back-to-top -->
+<div id="back-top">
+    <a href="#section" data-toggle="tooltip" data-placement="top" title="top">
+        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+    </a>
+</div>
+<script>
+    $('#back-top').hide();
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 250) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+        });
+
+        $('#back-top a').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 300);
+            return false;
+        });
+    });
+</script>
+
+<!-- search -->
+<script>
+    function dispatch() {
+        var q = document.getElementById("search");
+        if (q.value != "") {
+            var url = 'https://www.baidu.com/s?wd=' + q.value;
+            if (navigator.userAgent.indexOf('iPad') > -1 || navigator.userAgent.indexOf('iPod') > -1 || navigator.userAgent.indexOf('iPhone') > -1) {
+                location.href = url;
+            } else {
+                window.open(url, "_blank");
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+</script>
+
