@@ -27,6 +27,21 @@ layout: default
                 {{ content }}
             </div>
     <!-- Sidebar Container -->
+
+            <!-- Search -->
+            <section>
+                <hr class="hidden-sm hidden-xs">
+                <h5><a href="#">SEARCH</a></h5>
+                <form id="search-form" action="https://www.baidu.com" onsubmit="return dispatch()" target="_blank">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <a class="input-group-addon" onclick="return dispatch()" href="#"><i class="fa fa-search"></i></a>
+                            <input type="text" class="form-control" id="search" name="q" placeholder="Search" autocomplete="off" value="">
+                        </div>
+                    </div>
+                </form>
+            </section>
+
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
