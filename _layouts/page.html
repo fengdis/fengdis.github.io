@@ -33,20 +33,6 @@ layout: default
                 col-md-10 col-md-offset-1
                 sidebar-container">
 
-                <!-- Search -->
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="#">SEARCH</a></h5>
-                    <form id="search-form" action="https://www.baidu.com" onsubmit="return dispatch()" target="_blank">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <a class="input-group-addon" onclick="return dispatch()" href="#"><i class="fa fa-search"></i></a>
-                                <input type="text" class="form-control" id="search" name="q" placeholder="Search" autocomplete="off" value="">
-                            </div>
-                        </div>
-                    </form>
-                </section>
-
                 <!-- Featured Tags -->
                 {% if site.featured-tags %}
                 <section>
@@ -96,6 +82,21 @@ layout: default
                 col-xs-12
                 sidebar-container
             ">
+
+                <!-- Search -->
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="#">SEARCH</a></h5>
+                    <form id="search-form" action="https://www.baidu.com" onsubmit="return dispatch()" target="_blank">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <a class="input-group-addon" onclick="return dispatch()" href="#"><i class="fa fa-search"></i></a>
+                                <input type="text" class="form-control" id="search" name="q" placeholder="Search" autocomplete="off" value="">
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
                 <!-- Featured Tags -->
                 {% if site.featured-tags %}
                 <section>
@@ -137,20 +138,10 @@ layout: default
                                 </a>
                             </li>
                             {% endif %}
-                            <!-- add jianshu add target = "_blank" to <a> by BY -->
-                            {% if site.jianshu_username %}
-                            <li>
-                                <a target="_blank" href="https://www.jianshu.com/u/{{ site.jianshu_username }}">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
-                                    </span>
-                                </a>
-                            </li>
-                            {% endif %}
+
                             {% if site.twitter_username %}
                             <li>
-                                <a href="https://twitter.com/{{ site.twitter_username }}">
+                                <a target="_blank" href="https://twitter.com/{{ site.twitter_username }}">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -158,26 +149,7 @@ layout: default
                                 </a>
                             </li>
                             {% endif %}
-                            {% if site.zhihu_username %}
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if site.weibo_username %}
-                            <li>
-                                <a target="_blank" href="http://weibo.com/{{ site.weibo_username }}">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            {% endif %}
+
                             {% if site.facebook_username %}
                             <li>
                                 <a target="_blank" href="https://www.facebook.com/{{ site.facebook_username }}">
@@ -188,6 +160,7 @@ layout: default
                                 </a>
                             </li>
                             {% endif %}
+
                             {% if site.github_username %}
                             <li>
                                 <a target="_blank" href="https://github.com/{{ site.github_username }}">
@@ -198,10 +171,76 @@ layout: default
                                 </a>
                             </li>
                             {% endif %}
+
+                            {% if site.jianshu_username %}
+                            <li>
+                                <a target="_blank" href="https://www.jianshu.com/u/{{ site.jianshu_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
+                                    </span>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% if site.zhihu_username %}
+                            <li>
+                                <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-stack-1x fa-inverse">知</i>
+                                    </span>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% if site.weibo_username %}
+                            <li>
+                                <a target="_blank" href="https://weibo.com/u/{{ site.weibo_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% if site.weixin_username %}
+                            <li>
+                                <a target="_blank" href="https://github.com/{{ site.weixin_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-weixin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% if site.linkedin_username %}
+                            <li>
+                                <a target="_blank" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% if site.mail_address %}
+                            <li>
+                                <a target="_blank" href="mailto:{{ site.mail_address }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            {% endif %}
                             
                         </ul>
                         {% if site.email %}
-                            <p>✉️ {{site.email}}</p>
+                        <p>✉️<a target="_blank" href="mailto:{{site.email}}"></a></p>
                         {% endif %}
                     </div>
                 </section>

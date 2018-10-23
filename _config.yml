@@ -13,20 +13,21 @@ github_repo: "https://github.com/fengdis/fengdis.github.io.git"  # you code repo
 
 # Sidebar settings
 sidebar: true                            # whether or not using Sidebar.
-sidebar-about-description: "Goals determine what you going to be!"
+sidebar-about-description: "Goals determine what you going to be."
 sidebar-avatar: /img/avatar_m.jpg       # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # SNS settings
 RSS: false
-weibo_username:     3858931597
-zhihu_username:     luo-mo-qing-chun-nian-hua
-github_username:    fengdis
+twitter_username:   fengdis
 facebook_username:  100025268520773
-jianshu_username:   a38652f01aa0
-#twitter_username:   fengdis
+github_username:    fengdis
+#jianshu_username:   a38652f01aa0
+zhihu_username:     luo-mo-qing-chun-nian-hua
+#weibo_username:     3858931597
 #linkedin_username:  fengdis
-weixin_username:  fengdis
+#weixin_username:  fengdis
+mail_address: fengdis@163.com
 
 
 
@@ -99,13 +100,16 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "blog",
+        title: "Blog",
         href: "http://www.fengdis.com/blog"
     },{
         title: "简书",
-        href: "http://www.jianshu.com"
+        href: "http://www.jianshu.com/u/a38652f01aa0"
     },{
         title: "Baidu Analytics",
         href: "https://tongji.baidu.com"
+    },{
+        title: "Google Analytics",
+        href: "https://analytics.google.com/analytics"
     }
 ]
