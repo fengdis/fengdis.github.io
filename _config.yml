@@ -4,27 +4,29 @@ SEOTitle: 个人博客 | Blog
 header-img: img/post-bg-desk.jpg
 email: fengdis@gmail.com
 description: "Every failure is leading towards success."
-keyword: "Blog, 个人博客, fengdi, fengdis, iOS, Apple, iPhone"
-url: "http://fengdis.github.io"          # your host, for absolute URL
-baseurl: ""                              # for example, '/blog' if your blog hosted on 'host/blog'
+keyword: "Blog, 个人博客, fengdi, fengdis, java"
+url: "http://fengdis.github.io"           # your host, for absolute URL
+baseurl: ""                               # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/fengdis/fengdis.github.io.git"  # you code repository
+#timezone: Asia/Shanghai
+
 
 # Sidebar settings
-sidebar: true                           # whether or not using Sidebar.
+sidebar: true                            # whether or not using Sidebar.
 sidebar-about-description: "Goals determine what you going to be!"
-sidebar-avatar: /img/avatar_m.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
-
+sidebar-avatar: /img/avatar_m.jpg       # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # SNS settings
 RSS: false
-#weibo_username:     fengdis
+weibo_username:     3858931597
 zhihu_username:     luo-mo-qing-chun-nian-hua
 github_username:    fengdis
 facebook_username:  100025268520773
 jianshu_username:   a38652f01aa0
 #twitter_username:   fengdis
-
+#linkedin_username:  fengdis
+weixin_username:  fengdis
 
 
 
@@ -61,32 +63,30 @@ kramdown:
 
 # Gitalk Gitalk国内较快
 gitalk:
-  enable: true    #是否开启Gitalk评论
+  enable: true                          #是否开启Gitalk评论
   clientID: 5eb73454f92a7c0469db                            #生成的clientID
   clientSecret: 6811c70617bb01ad379c1685b52dee15727c13c0    #生成的clientSecret
-  repo: fengdis.github.io    #仓库名称
-  owner: fengdis             #github用户名
-  admin: fengdis
-  distractionFreeMode: true  #是否启用类似FB的阴影遮罩
+  repo: fengdis.github.io               #仓库名称
+  owner: fengdis                        #github用户名
+  admin: fengdis                        #仓库管理员（可配置多个）
+  distractionFreeMode: true           #是否启用类似FB的阴影遮罩
 
 
 # 统计
-
 # Analytics settings
 # Baidu Analytics
 ba_track_id: 456cee4a16093ac54c79fdb531a624b4
 
 # Google Analytics
-ga_track_id: 'UA-127807989-1'            # Format: UA-xxxxxx-xx
-ga_domain: blog.fengdis.com              # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
-
+ga_track_id: 'UA-127807989-1'           # Format: UA-xxxxxx-xx
+ga_domain: blog.fengdis.com             # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
 
 
 
 
 # Featured Tags
 featured-tags: true                     # 是否使用首页标签
-featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
+featured-condition-size: 1             # 相同标签数量大于这个数，才会出现在首页
 
 
 
@@ -99,16 +99,13 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "WY",
-        href: "http://zhengwuyang.com"
+        title: "blog",
+        href: "http://www.fengdis.com/blog"
     },{
         title: "简书",
-        href: "http://www.jianshu.com/u/a38652f01aa0"
+        href: "http://www.jianshu.com"
     },{
-        title: "Apple",
-        href: "https://apple.com"
-    },{
-        title: "Apple Developer",
-        href: "https://developer.apple.com/"
+        title: "Baidu Analytics",
+        href: "https://tongji.baidu.com"
     }
 ]

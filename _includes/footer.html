@@ -16,21 +16,11 @@
                     {% endif %}
                     <!-- add jianshu add target = "_blank" to <a> by BY -->
                     {% if site.jianshu_username %}
-                            <li>
-                                <a target="_blank" href="https://www.jianshu.com/u/{{ site.jianshu_username }}">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">简</i>
-                                    </span>
-                                </a>
-                            </li>
-                    {% endif %}
-                    {% if site.twitter_username %}
                     <li>
-                        <a href="https://twitter.com/{{ site.twitter_username }}">
+                        <a target="_blank" href="https://www.jianshu.com/u/{{ site.jianshu_username }}">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">简</i>
                             </span>
                         </a>
                     </li>
@@ -42,14 +32,15 @@
                         <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                <i class="fa fa-stack-1x fa-inverse">知</i>
                             </span>
                         </a>
                     </li>
                     {% endif %}
+
                     {% if site.weibo_username %}
                     <li>
-                        <a target="_blank" href="http://weibo.com/{{ site.weibo_username }}">
+                        <a target="_blank" href="https://weibo.com/u/{{ site.weibo_username }}">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
@@ -57,7 +48,6 @@
                         </a>
                     </li>
                     {% endif %}
-
 
                     {% if site.facebook_username %}
                     <li>
@@ -69,6 +59,18 @@
                         </a>
                     </li>
                     {% endif %}
+
+                    {% if site.twitter_username %}
+                    <li>
+                        <a href="https://twitter.com/{{ site.twitter_username }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+
                     {% if site.github_username %}
                     <li>
                         <a target="_blank" href="https://github.com/{{ site.github_username }}">
@@ -79,6 +81,18 @@
                         </a>
                     </li>
                     {% endif %}
+
+                    {% if site.weixin_username %}
+                    <li>
+                        <a target="_blank" href="https://github.com/{{ site.weixin_username }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+
                     {% if site.linkedin_username %}
                     <li>
                         <a target="_blank" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
