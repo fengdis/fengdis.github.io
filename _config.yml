@@ -14,7 +14,7 @@ github_repo: "https://github.com/fengdis/fengdis.github.io.git"  # you code repo
 # Sidebar settings
 sidebar: true                            # whether or not using Sidebar.
 sidebar-about-description: "Goals determine what you going to be."
-sidebar-avatar: /img/avatar_m.jpg       # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar.jpg       # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # SNS settings
