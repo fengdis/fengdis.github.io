@@ -62,6 +62,9 @@ kramdown:
 # Disqus（https://disqus.com/）
 # disqus_username: fengdis
 
+# Netease setttings
+netease_comment: false
+
 # Gitalk Gitalk国内较快
 gitalk:
   enable: true                          #是否开启Gitalk评论

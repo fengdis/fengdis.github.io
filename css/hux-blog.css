@@ -1259,38 +1259,3 @@ img::-moz-selection {
 .page-fullscreen footer .copyright a:hover {
   color: #ddd;
 }
-
-/* back-top */
-#back-top {
-  position: fixed;
-  bottom: 2em;
-  right: 2em;
-}
-#back-top a {
-  background: rgba(0, 0, 0, 0.45);
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  transition: 1s;
-  width: 40px;
-  height: 40px;
-  display: block;
-  font-size: 36px;
-  color: #fff;
-  text-align: center;
-  border-radius: 3px 3px;
-  text-decoration: none;
-}
-#back-top a:hover {
-  background-color: #0085a1;
-}
-#back-top i {
-    font-size: 24px;
-    line-height: 40px;
-    vertical-align: top;
-}
-/* 向上图标透明白色 */
-.fa-chevron-up:before {
-    color: rgba(252,252,252,0.81);
-}
