@@ -1,16 +1,15 @@
 ---
 layout: page
 title: "About"
-description: "Hey, this is my blog."
+description: "Hey, this is BY."
 header-img: "img/post-bg-rwd.jpg"
-multilingual: true
 ---
 
 <!-- Language Selector -->
-<!--<select class="sel-lang" onchange="onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese</option>
-    <option value="1"> 英文 English</option>
-</select>-->
+<!-- <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英文 English </option>
+</select> -->
 
 <!-- Chinese Version -->
 <div class="zh post-container">
@@ -19,12 +18,11 @@ multilingual: true
     <blockquote><p>冰冻三尺 非一日之寒<br>
         积土成山 非斯须之作</p></blockquote>
 
-    <p>Hey，我是<strong>fengdi</strong>，一个奋斗在it界的搬砖工。</p>
+    <p>Hey，我是<strong>封迪</strong>，一个奋斗在it界的搬砖工。</p>
 
     <p>像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</p>
 
-    <p>这是我的利用 <a href="https://pages.github.com/">GitHub Pages</a> 与 <a href="http://jekyll.com.cn/">Jekyll</a> 搭建的
-        个人博客。我在GitHub主页<a href="https://github.com/fengdis">👉GitHub</a> 。如果有什么问题，欢迎提出探讨~</p>
+    <p>这是我的利用 <a href="https://pages.github.com/">GitHub Pages</a> 与 <a href="http://jekyll.com.cn/">Jekyll</a> 搭建的 个人博客。我在GitHub主页<a href="https://github.com/fengdis">👉GitHub·BY</a> 。如果有什么问题，欢迎提出探讨~</p>
 
     <p></p>
 
@@ -34,60 +32,71 @@ multilingual: true
         <li><a href="https://github.com">GitHub</a></li>
         <li><a href="http://jekyll.com.cn/">jekyll</a></li>
         <li><a href="http://huangxuan.me/">Hux</a></li>
-        <li><a href="http://fontawesome.dashgame.com/">Font Awesome</a></li>
         <li><a href="https://tongji.baidu.com">Baidu Analytics</a></li>
         <li><a href="https://analytics.google.com/analytics">Google Analytics</a></li>
     </ul>
-
-    微信公众号
-
-    <div class="visible-md visible-lg">
-        <img src="/img/wechat-334.jpg" width="334" />
-        <small class="img-hint">Scanning on mobile</small>
-    </div>
-
-    <div class="visible-xs visible-sm">
-        <img src="/img/wechat-258.jpg" width="258" />
-        <small class="img-hint">Scanning on mobile</small>
-    </div>
-
 </div>
 
 <!-- English Version -->
-<!--<div class="en post-container">
-    <blockquote><p>Yet another Java Developer.<br>
-        Yet another Life-long Student.</p></blockquote>
+<!-- <div class="en post-container">
+    <blockquote><p>Yet another iOS Developer. <br>
+    Yet another Life-long Student.</p></blockquote>
 
-    <p>Hi, I am <strong>fengdi</strong>，I am a software engineer and currently working in IT</p>
+    <p>Hi, I am <strong>Baiying Qiu</strong>，you can call me <strong>BY</strong>. I am an iOS software engineer and currently working in Xiamen</p>
 
-    <p>This is my personal blog, through making Github Pages and Jekyll.My GitHub 👉 <a
-            href="http://github.com/fengdis">Github</a>.</p>
+    <p>This is my personal blog, through making Github Pages and Jekyll.My GitHub  👉 <a href="http://github.com/qiubaiying">Github·BY</a>.</p>
 
-    <p></p>
+    <p>I am a sports enthusiast, I like fitness, running and boxing.</p>
 
     <h5>Talks</h5>
 
     <ul>
-        <li><a href="https://github.com">GitHub</a></li>
-        <li><a href="http://jekyll.com.cn/">jekyll</a></li>
-        <li><a href="http://huangxuan.me/">Hux</a></li>
-        <li><a href="http://fontawesome.dashgame.com/">Font Awesome</a></li>
-        <li><a href="https://tongji.baidu.com">Baidu Analytics</a></li>
-        <li><a href="https://analytics.google.com/analytics">Google Analytics</a></li>
+    <li><a href="https://github.com">GitHub</a></li>
+    <li><a href="http://jekyll.com.cn/">jekyll</a></li>
+    <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+    <li><a href="https://qiubaiying.github.io">BY</a></li>
     </ul>
+</div> -->
 
-    Wechat
+<!-- Handle Language Change -->
+<!--<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
 
-    <div class="visible-md visible-lg">
-        <img src="/img/wechat-334.jpg" width="334" />
-        <small class="img-hint">Scanning on mobile</small>
-    </div>
+    // bind hashchange event
+    window.addEventListener('hashchange', _render);
 
-    <div class="visible-xs visible-sm">
-        <img src="/img/wechat-258.jpg" width="258" />
-        <small class="img-hint">Scanning on mobile</small>
-    </div>
-</div>-->
+    // handle render
+    function _render(){
+        var _hash = window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $zh.style.display = "none";
+            // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }
+    }
+
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            window.location.hash = "#zh"
+        }else{
+            window.location.hash = "#en"
+        }
+    }
+
+    // init
+    _render();
+</script>-->
 
 
 <!-- Gitalk 评论 start  -->
@@ -104,23 +113,17 @@ multilingual: true
         repo: '{{site.gitalk.repo}}',
         owner: '{{site.gitalk.owner}}',
         admin: ['{{site.gitalk.admin}}'],
-        distractionFreeMode: {
-    {
-        site.gitalk.distractionFreeMode
-    }
-    },
+        distractionFreeMode: {{site.gitalk.distractionFreeMode}},
     id: 'about',
-    })
-    ;
+    });
     gitalk.render('gitalk-container');
 </script>
 {% endif %}
 <!-- Gitalk end -->
 
-
-<!-- disqus 评论 start  -->
-{% if site.disqus.enable %}
 <!-- disqus 评论框 start  -->
+{% if site.disqus.enable %}
+
 <div class="comment">
     <div id="disqus_thread" class="disqus-thread">
     </div>
@@ -134,15 +137,12 @@ multilingual: true
     var disqus_identifier = "{{site.disqus.username}}/{{page.url}}";
     var disqus_url = "{{site.url}}{{page.url}}";
 
-    (function () {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
 <!-- disqus 公共JS代码 end -->
 {% endif %}
-<!-- disqus end -->
 
