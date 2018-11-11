@@ -44,8 +44,6 @@ tags:
 >
 >最终会显示以下效果，说明部署已完成：
 >
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
->
 >```
 >Congratulations, your_shadowsocks_version install completed!
 >Your Server IP        :11.11.11.11
@@ -56,8 +54,6 @@ tags:
 >Welcome to visit:https://teddysun.com/486.html
 >Enjoy it
 >```
->
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
 >
 >**2）把8989端口设置为开放状态**
 >
@@ -83,11 +79,7 @@ tags:
 >
 >阿里云有安全组配置，需要进入阿里云管理界面找到安全组配置，把8989端口开放。否则外网依然无法方位该端口。
 >
-> 
->
 >至此，服务器部署完成！
->
-> 
 >
 >**4）卸载方法：使用root用户，执行以下命令即可**
 >
@@ -105,8 +97,6 @@ tags:
 >
 >![img](https://images2017.cnblogs.com/blog/1220516/201708/1220516-20170825160647980-1303832939.png)
 >
-> 
->
 >配置好后，在电脑右下角找到ss，并点击启用。
 >
 >![img](https://images2017.cnblogs.com/blog/1220516/201708/1220516-20170825160839433-1728339455.png)
@@ -123,8 +113,6 @@ tags:
 >
 >打开App后， 点击右上角 + 号：
 >
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
->
 >```
 >type：ss
 >name : 随便起一个名字即可。笔者是：abcd
@@ -134,8 +122,6 @@ tags:
 >proxyMethod：system
 >method ： 刚才配置的加密方式。笔者是：AES-256-CFB
 >```
->
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
 >
 >点击“save configuration”后进入choos页面，点击你刚刚创建的那个名字abcd即可。回到首页，找到你创建的代理并打开。
 >
@@ -151,14 +137,10 @@ tags:
 >
 >**b.找到config.json，并编辑代理配置**
 >
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
->
 >```
 >$ cd /etc/shadowsocks/
 >$ sudo vim config.json
 >```
->
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
 >
 >```
 >{
@@ -171,12 +153,6 @@ tags:
 >    "method":"aes-256-cfb" //ss服务器配置的加密方式
 >}
 >```
->
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
->
-> 
->
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
 >
 >**c.启动shadowsocks，启动后控制台不要关闭**
 >

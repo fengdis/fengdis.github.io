@@ -1,0 +1,562 @@
+---
+layout:     post
+title:      nginx之负载均衡和缓存
+subtitle:   nginx之负载均衡和缓存
+date:       2018-11-11
+author:     fengdi
+header-img: img/post-bg-keybord.jpg
+catalog: true
+tags:
+    - nginx
+    - 反向代理
+    - 缓存
+---
+
+> Nginx 提供了反向代理和负载均衡的功能，通过合理处理业务的分摊，从而提供网站的处理能力，通过缓存的功能，可以把不经常更新的动态资源，进行静态缓存处理。
+
+# 1. 反向代理
+
+反向代理功能在 Nginx 中是最重要的功能，负载均衡功能就是从反向代理功能中衍生出来的。
+
+- **正向代理 VS 反向代理**
+
+  **正向代理 VS 反向代理**
+  **正向代理**，是一个位于客户端和目标服务器之间的代理服务器，客户端将发送的请求和指定的目标服务器提交给代理服务器，然后代理服务器向目标服务器发起请求，代理服务器并将获得的响应结果返回给客户端的过程
+
+![](//upload-images.jianshu.io/upload_images/9327494-623e9f70a20d4f33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+
+正向代理图示
+
+从图示可以看出，客户端用户不能直接访问目标服务器，需要通过请求代理服务器来访问目标服务器，客户端用户需要代理，必须通过配置客户端来完成代理。
+
+**反向代理**，反向代理对于客户端而言就是目标服务器，客户端向反向代理服务器发送请求后，反向代理服务器将该请求转发给内部网络上的后端服务器，并将从后端服务器上得到的响应结果返回给客户端
+
+![](//upload-images.jianshu.io/upload_images/9327494-a5c891323a1f770a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+
+反向代理图示
+
+用户A 、用户B 、用户C 同时对反向代理服务器发送请求，反向代理服务器则根据其内部的具体配置，将用户的请求分发给后端服务器进行处理，并将后端服务器处理后的响应结果作为自己的响应结果返回给用户。反向代理服务器的整个处理过程，用户并不知情。
+
+- **反向代理服务配置**
+
+1. 虚拟三台主机:  一台 nginx 代理服务器（192.168.1.188）  、 一台[http://www.cqzhangjian80.com/](http://www.cqzhangjian80.com/) 服务器 、 另外一台[http://www.cqzhangjian81.com/](http://www.cqzhangjian81.com/)
+
+在客户端主机 修改 hosts 文件
+
+```
+192.168.1.188 www.cqzhangjian80.com
+192.168.1.188 www.cqzhangjian81.com
+
+```
+
+2.配置 nginx 配置文件
+
+```
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    server {
+
+        listen       80;
+        server_name  www.cqzhangjian80.com;
+
+        root /opt/tomcat8080/webapps/ROOT;
+        index index.html index.htm index.jsp index.do;  
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location ~ /(WEB-INF|META-INF) {
+            deny all;
+           
+        }
+
+        location ~ \.(jsp|do)$ {
+
+            proxy_pass http://127.0.0.1:8080;
+
+            proxy_set_header X-client-IP $remote_addr;  
+
+        }
+        location ~ ^/(docs|examples)(/.*)*$ {
+
+            root /opt/apache-tomcat-8.5.34/webapps;
+
+        }   
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+       
+    }
+
+    server {
+
+        listen       80;
+        server_name  www.cqzhangjian81.com;
+
+        root /opt/tomcat8081/webapps/ROOT;
+        index index.html index.htm index.jsp index.do;  
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location ~ /(WEB-INF|META-INF) {
+            deny all;
+           
+        }
+
+        location ~ \.(jsp|do)$ {
+
+            proxy_pass http://127.0.0.1:8081;
+
+            proxy_set_header X-client-IP $remote_addr;  
+
+        }
+
+
+        location ~ ^/(docs|examples)(/.*)*$ {
+
+            root /opt/apache-tomcat-8.5.34/webapps;
+
+        }   
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+}
+
+```
+
+1. 客户机演示
+
+   ​
+
+   ​
+
+   ![](//upload-images.jianshu.io/upload_images/9327494-b009ee3e2ec8b2de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+
+   访问http://www.cqzhangjian80.com 服务器
+
+![](//upload-images.jianshu.io/upload_images/9327494-f5e3540f8b2bdcef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+
+访问http://www.cqzhangjian81.com 服务器
+
+4.反向代理常用指令
+
+![](//upload-images.jianshu.io/upload_images/9327494-b2fb10a27e5a5537.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+
+常用指令
+
+最重要的指令为:proxy_ pass 指定被代理的服务器地址
+
+# 2.负载均衡
+
+> 负载均衡（ load balance）就是将负载分摊到多个操作单元上执行，从而提高服务的可用
+>
+> 负载均衡（ load balance）就是将负载分摊到多个操作单元上执行，从而提高服务的可用
+> 性和响应速度，增强用户体验。
+
+![](//upload-images.jianshu.io/upload_images/9327494-5c73a6d35b6c289a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/903/format/webp)
+
+负载均衡原理图
+
+# 2.1 负载方式
+
+- 1、轮询（默认）：每个请求按时间顺序逐一分配到不同的后端服务器，如果后端某台服务器宕机，则自动剔除故障机器，使用户访问不受影响。
+
+配置文件修改:
+
+```
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+    server {
+
+        listen       80;
+        server_name  www.cqzhangjian.com;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location  / {
+          proxy_pass http://myserver;         
+        }
+    }
+    upstream myserver {
+        
+            server 127.0.0.1:8080;
+            server 127.0.0.1:8081;
+    }
+}
+
+```
+
+- 2、weight：指定轮询权重，weight值越大，分配到的几率就越高，主要用于后端每台服务器性能不均衡的情况。
+
+  2、weight：指定轮询权重，weight值越大，分配到的几率就越高，主要用于后端每台服务器性能不均衡的情况。
+  配置文件修改:
+
+```
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+    server {
+
+        listen       80;
+        server_name  www.cqzhangjian.com;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location  / {
+          proxy_pass http://myserver;         
+        }
+    }
+    upstream myserver {
+        
+            server 127.0.0.1:8080  weight=5;
+            server 127.0.0.1:8081  weight=2;
+    }
+}
+
+```
+
+weight 值越大，访问的频率越高。
+
+负载其他参数:
+
+![](//upload-images.jianshu.io/upload_images/9327494-8f2a7aa2acf6dd4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+
+其他参数
+
+- 3、ip_hash：每个请求按访问IP的哈希结果分配，这样每个访客固定访问一个后端服务器，可以有效的解决动态网页存在的session共享问题
+
+配置文件修改:
+
+```
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    server {
+
+        listen       80;
+        server_name  www.cqzhangjian.com;
+
+     
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location  / {
+          proxy_pass http://myserver;         
+        }
+    }
+    
+    upstream myserver {
+            ip_hash;
+            server 127.0.0.1:8080;
+            server 127.0.0.1:8081;
+    }
+}
+
+```
+
+注意：使用ip_hash 不能 跟 backup 和 weight 参数 使用。
+
+- 4、fair（第三方）：更智能的一个负载均衡算法，此算法可以根据页面大小和加载时间长短智能地进行负载均衡，也就是根据后端服务器的响应时间来分配请求，响应时间短的优先分配。如果想要使用此调度算法，需要Nginx的upstream_fair模块。
+
+
+- 4.1 下载 fair 模块:
+
+```
+https://github.com/gnosek/nginx-upstream-fair
+
+```
+
+注意:
+
+#### nginx-upstream-fair-master fair模块源码
+
+官方github下载地址：[https://github.com/gnosek/nginx-upstream-fair](https://github.com/gnosek/nginx-upstream-fair)
+
+官方github下载地址：[https://github.com/gnosek/nginx-upstream-fair](https://github.com/gnosek/nginx-upstream-fair)
+说明：如果从github下载最新版本，在安装到nginx 1.14.0版本时，会报出编译错误。需要对源码做一些修改，修改参照(如果你看到这篇文章时，github主已经修改了该bug，或者你用的是nginx 1.14.0以下版本，请忽视...)：[https://github.com/gnosek/nginx-upstream-fair/pull/27/commits/ff979a48a0ccb9217437021b5eb9378448c2bd9e](https://github.com/gnosek/nginx-upstream-fair/pull/27/commits/ff979a48a0ccb9217437021b5eb9378448c2bd9e)
+
+官方github下载地址：[https://github.com/gnosek/nginx-upstream-fair](https://github.com/gnosek/nginx-upstream-fair)
+说明：如果从github下载最新版本，在安装到nginx 1.14.0版本时，会报出编译错误。需要对源码做一些修改，修改参照(如果你看到这篇文章时，github主已经修改了该bug，或者你用的是nginx 1.14.0以下版本，请忽视...)：[https://github.com/gnosek/nginx-upstream-fair/pull/27/commits/ff979a48a0ccb9217437021b5eb9378448c2bd9e](https://github.com/gnosek/nginx-upstream-fair/pull/27/commits/ff979a48a0ccb9217437021b5eb9378448c2bd9e)
+对于比较懒的童鞋，这里提供了已经修改好的源码包：[https://files.cnblogs.com/files/ztlsir/nginx-upstream-fair-master.zip](https://files.cnblogs.com/files/ztlsir/nginx-upstream-fair-master.zip)
+
+- 4.2 重写编译nginx:
+
+```
+./configure \
+--prefix=/opt/nginx \
+--with-http_ssl_module \
+--add-module=/opt/nginx-fair
+
+make && make install
+
+```
+
+- 4.3 配置文件
+
+```
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    server {
+
+        listen       80;
+        server_name  www.cqzhangjian.com;
+
+     
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location  / {
+          proxy_pass http://myserver;         
+        }
+    }
+    
+    upstream myserver {
+            fair;
+            server 127.0.0.1:8080;
+            server 127.0.0.1:8081;
+    }
+}
+
+```
+
+- 5、url_hash（第三方）：按访问URL的哈希结果来分配请求，使每个URL定向到同一台后端服务器，可以进一步提高后端缓存服务器的效率。如果想要使用此调度算法，需要Nginx的hash软件包。
+
+自学！！！！
+
+# 3.缓存
+
+> Nginx 提供了两种 Web 缓存方式， 一种是永久性缓存，另一种是临时性缓存。通过反向代理服务器对访问较多的内容进行缓存，降低后端服务器的访问压力
+
+## 3.1 永久缓存
+
+- 准备一台 缓存服务器:[www.cqzhangjian.com](http://www.cqzhangjian.com)
+
+  准备一台 缓存服务器:[www.cqzhangjian.com](http://www.cqzhangjian.com)
+  一台源数据服务器:127.0.0.1:8080
+
+- 配置文件修改:
+
+```
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    server {
+
+        listen       80;
+        server_name  www.cqzhangjian.com;
+
+        location  / {
+          allow  all;
+          root cache;
+          proxy_store on;
+          proxy_store_access user:rw group:rw all:r;
+          proxy_temp_path cache_tmp;
+          
+          if (!-e $request_filename) {
+          
+            proxy_pass http://127.0.0.1:8080;
+        
+          }
+         
+        }
+        
+    }
+
+}
+```
+

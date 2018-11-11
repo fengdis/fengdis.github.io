@@ -20,7 +20,7 @@ tags:
 >
 >2、创建运行oracle数据库的系统用户和用户组：
 >
->　　用Root账号登录，运行下面指令，创建所需要用户和用户组，[分组原因参考网址](http://www.oracle.com/technetwork/cn/articles/hunter-rac11gr2-iscsi-2-092412-zhs.html#13)
+>用Root账号登录，运行下面指令，创建所需要用户和用户组，[分组原因参考网址](http://www.oracle.com/technetwork/cn/articles/hunter-rac11gr2-iscsi-2-092412-zhs.html#13)
 >
 >```
 >groupadd oinstall　　　　　　　　　　　　　#创建用户组oinstall
@@ -33,10 +33,8 @@ tags:
 >
 >3、创建oracle数据库安装目录（运行下面指令，创建账号和分配权限）
 >
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
->
 >```
->mkdir -p /data/oracle　　#oracle数据库安装目录
+> mkdir -p /data/oracle　　#oracle数据库安装目录
 > mkdir -p /data/oraInventory　　#oracle数据库配置文件目录
 > mkdir -p /data/database　　#oracle数据库软件包解压目录
 > cd /data
@@ -46,11 +44,9 @@ tags:
 > chown -R oracle:oinstall /data/database
 >```
 >
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
->
 >4、修改OS系统标识
 >
-> 　　oracle默认不支持CentOS系统安装， 修改文件 /etc/[RedHat](http://www.linuxidc.com/topicnews.aspx?tid=10)-release 内容为RedHat-7
+> oracle默认不支持CentOS系统安装， 修改文件 /etc/[RedHat](http://www.linuxidc.com/topicnews.aspx?tid=10)-release 内容为RedHat-7
 >
 >```
 >vi /etc/redhat-release#修改成红色部分文字
@@ -59,9 +55,7 @@ tags:
 >
 >5.安装oracle数据库所需要的软件包
 >
->　　以下是按照需要依赖的安装包，通过 yum install {包名} 来验证是否安装，例如yum install binutils
->
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
+> 以下是按照需要依赖的安装包，通过 yum install {包名} 来验证是否安装，例如yum install binutils
 >
 >```
 >binutils-2.23.52.0.1-12.el7.x86_64 
@@ -91,21 +85,15 @@ tags:
 >sysstat-10.1.5-1.el7.x86_64
 >```
 >
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
->
->　　使用下面指令，检查依赖软件包
+> 使用下面指令，检查依赖软件包
 >
 >```
 >yum install binutils-2.* compat-libstdc++-33* elfutils-libelf-0.* elfutils-libelf-devel-* gcc-4.* gcc-c++-4.* glibc-2.* glibc-common-2.* glibc-devel-2.* glibc-headers-2.* ksh-2* libaio-0.* libaio-devel-0.* libgcc-4.* libstdc++-4.* libstdc++-devel-4.* make-3.* sysstat-7.* unixODBC-2.* unixODBC-devel-2.* pdksh*
 >```
 >
-> 
->
 >6、关闭防火墙和selinux，[具体操作可参考博客](http://www.cnblogs.com/xibei666/p/5934659.html)
 >
 >7、修改内核参数
->
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
 >
 >```
 >vi /etc/sysctl.conf #红色部分是要添加sysctl.conf内容
@@ -125,8 +113,6 @@ tags:
 >net.core.wmem_max= 1048576
 >```
 >
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
->
 >8、对oracle用户设置限制，提高软件运行性能（红色为添加部分）
 >
 >```
@@ -139,8 +125,6 @@ tags:
 >```
 >
 >9、配置用户的环境变量（红色部分为添加代码）
->
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
 >
 >```
 >vi /home/oracle/.bash_profile  #红色部分是要追加bash_profile内容部分
@@ -155,13 +139,11 @@ tags:
 >export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK  #设置Oracle客户端字符集，必须与Oracle安装时设置的字符集保持一致
 >```
 >
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
->
->　　配置完成，:wq!保存退出，运行source /home/oracle/.bash_profile时上述配置生效
+> 配置完成，:wq!保存退出，运行source /home/oracle/.bash_profile时上述配置生效
 >
 >10、获取安装包文件后解压安装包
 >
->　　获取安装包文件的方式，[可通过ftp服务器](http://www.cnblogs.com/xibei666/p/5934659.html)，也可通过wget下载到指定目录，解压方式如下
+> 获取安装包文件的方式，[可通过ftp服务器](http://www.cnblogs.com/xibei666/p/5934659.html)，也可通过wget下载到指定目录，解压方式如下
 >
 >```
 >unzip linux.x64_11gR2_database_1of2.zip -d /data/database/  #解压文件1
@@ -181,13 +163,10 @@ tags:
 >
 >像window安装Oracle安装一样，此处不再重复介绍。
 >
->　　安装完成之后，通过netca打开监听配置页面，通过执行dbca命令，启动oracle实例安装界面,一个Oracle服务可以对应多个实例，一个Oracle数据库对应多个表空间和用户名，每个用户名又可管理表空间。
+> 安装完成之后，通过netca打开监听配置页面，通过执行dbca命令，启动oracle实例安装界面,一个Oracle服务可以对应多个实例，一个Oracle数据库对应多个表空间和用户名，每个用户名又可管理表空间。
 >
->　　安装完成实例之后，使用sqlPlus命令链接数据库的时候，提示 could not open parameter file "/data/Oracle/product/11.2/db_1/dbs/initorcl.ora"，这个时候需要将刚刚安装的Oracle实例配置文件（$ORACLE_BASE/admin /数据库名称/pfile目录下的init.ora.012009233838形式的文件）拷贝到/data/Oracle/product/11.2/db_1/dbs目录下
+> 安装完成实例之后，使用sqlPlus命令链接数据库的时候，提示 could not open parameter file "/data/Oracle/product/11.2/db_1/dbs/initorcl.ora"，这个时候需要将刚刚安装的Oracle实例配置文件（$ORACLE_BASE/admin /数据库名称/pfile目录下的init.ora.012009233838形式的文件）拷贝到/data/Oracle/product/11.2/db_1/dbs目录下
 >
-> 
->
->[![复制代码](https://common.cnblogs.com/images/copycode.gif)]()
 >
 >[oracle[@localhost](https://my.oschina.net/u/570656) pfile]$ pwd
 >/data/oracle/admin/MLUCDB/pfile
@@ -205,9 +184,9 @@ tags:
 >
 >
 >
-> 　　重启服务器之后，打开Oracle，提示 ORA-01034: ORACLE not available ORA-27101
+> 重启服务器之后，打开Oracle，提示 ORA-01034: ORACLE not available ORA-27101
 >
->　　原因在于未启动服务，操作的方式是：
+> 原因在于未启动服务，操作的方式是：
 >
 >　　1、启动oracle监听：cmd命令行窗口下，输入lsnrctl start，回车即启动监听；
 >
@@ -225,8 +204,6 @@ tags:
 >export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK  #设置Oracle客户端字符集，必须与Oracle安装时设置的字符集保持一致
 >```
 >
-> 
->
 >参考博客
 >
 >[centos安装oracle 11g 完全图解](http://www.cnblogs.com/zhwl/p/3719302.html) http://www.cnblogs.com/zhwl/p/3719302.html
@@ -240,36 +217,22 @@ tags:
 >rhel-server-6.4-x86_64-dvd.iso
 >http://pan.baidu.com/s/1dFfoCwx
 >
-> 
->
 >rhel-server-6.5-x86_64-dvd.iso
 >http://pan.baidu.com/s/1eRKnOqe
->
-> 
 >
 >rhel-server-6.6-x86_64-dvd.iso
 >http://pan.baidu.com/s/1o8KnJBk
 >
-> 
->
 >rhel-server-6.7-x86_64-dvd.iso
 >http://pan.baidu.com/s/1i45UBdV
->
-> 
 >
 >rhel-server-7.0-x86_64-dvd.iso
 >http://pan.baidu.com/s/1gfCu7VP
 >
-> 
->
 >rhel-server-7.1-x86_64-dvd.iso
 >http://pan.baidu.com/s/1pLCeo3L
 >
-> 
->
 >rhel-server-7.2-x86_64-dvd.iso
 >http://pan.baidu.com/s/1hsFat4w
->
-> 
 >
 >http://rhnproxy1.uvm.edu/pub/redhat/rhel6-x86_64/isos/

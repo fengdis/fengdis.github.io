@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      CentOS7 通过yum安装mysql5.7
-subtitle:   CentOS7 通过yum安装mysql5.7
+title:      CentOS7通过yum安装mysql
+subtitle:   CentOS7通过yum安装mysql
 date:       2018-11-01
 author:     fengdi
 header-img: img/post-bg-os-metro.jpg
@@ -19,8 +19,6 @@ tags:
 >cd /home/lnmp
 >```
 >
-> 
->
 >2.查看系统中是否已安装 MySQL 服务，以下提供两种方式：
 >
 >```
@@ -28,23 +26,17 @@ tags:
 >yum list installed | grep mysql
 >```
 >
-> 
->
 >3.如果已安装则删除 MySQL 及其依赖的包：
 >
 >```
 >yum -y remove mysql-libs.x86_64
 >```
 >
-> 
->
 >4.下载 mysql57-community-release-el7-8.noarch.rpm 的 YUM 源：
 >
 >```
 >wget http://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm
 >```
->
-> 
 >
 >5.安装 mysql57-community-release-el7-8.noarch.rpm：
 >
@@ -56,8 +48,6 @@ tags:
 >
 >mysql-community.repo
 >mysql-community-source.repo
->
-> 
 >
 >6.安装 MySQL，出现提示的话，一路 Y 到底
 >
@@ -77,8 +67,6 @@ tags:
 >```
 >A temporary password is generated for root@localhost: hilX0U!9i3_6
 >```
->
-> 
 >
 >7.登录到 MySQL 服务端并更新用户 root 的密码：
 >
@@ -135,8 +123,6 @@ tags:
 >systemctl status mysqld
 >```
 >
-> 
->
 >9.设置 MySQL 的字符集为 UTF-8：
 >
 >打开 /etc 目录下的 my.cnf 文件（此文件是 MySQL 的主配置文件）：
@@ -164,8 +150,6 @@ tags:
 >show variables like '%character%';
 >```
 >
-> 
->
 >10.查看指定的数据库中指定数据表的字符集，如查看 mysql 数据库中 servers 表的字符集：
 >
 >```
@@ -178,9 +162,7 @@ tags:
 >show full columns from servers;
 >```
 >
-> 
->
->\11. 忘记密码时，可用如下方法重置：
+>11.忘记密码时，可用如下方法重置：
 >
 >```
 >service mysqld stop
@@ -195,8 +177,6 @@ tags:
 >update user set password=password("new_password") where user="root"; 
 >flush privileges;
 >```
->
-> 
 >
 >12.一些文件的存放目录
 >
@@ -229,8 +209,6 @@ tags:
 >```
 >/var/run/mysqld/mysqld.pid
 >```
->
-> 
 >
 >13.MySQL 采用的 TCP/IP 协议传输数据，默认端口号为 3306，我们可以通过如下命令查看：
 >

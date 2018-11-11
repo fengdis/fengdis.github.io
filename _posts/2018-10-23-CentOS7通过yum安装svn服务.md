@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      CentOS7 yum安装svn服务
-subtitle:   CentOS7 yum安装svn服务
+title:      CentOS7通过yum安装svn服务
+subtitle:   CentOS7通过yum安装svn服务
 date:       2018-10-25
 author:     fengdi
 header-img: img/post-bg-map.jpg
@@ -13,7 +13,7 @@ tags:
 ---
 
 >svn服务器搭建
->
+
 >1、yum install subversion
 >
 >2、输入rpm -ql subversion查看安装位置
