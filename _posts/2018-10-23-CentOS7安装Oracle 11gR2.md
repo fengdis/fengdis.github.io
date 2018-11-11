@@ -4,7 +4,7 @@ title:      CentOS7安装Oracle 11gR2
 subtitle:   CentOS7安装Oracle 11gR2
 date:       2018-11-02
 author:     fengdi
-header-img: img/post-bg-debug.jpg
+header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
     - CentOS

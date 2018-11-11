@@ -4,7 +4,7 @@ title:      CentOS7 通过yum安装mysql5.7
 subtitle:   CentOS7 通过yum安装mysql5.7
 date:       2018-11-01
 author:     fengdi
-header-img: img/post-bg-debug.jpg
+header-img: img/post-bg-os-metro.jpg
 catalog: true
 tags:
     - CentOS
