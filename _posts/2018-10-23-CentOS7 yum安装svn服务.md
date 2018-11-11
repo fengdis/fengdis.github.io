@@ -4,7 +4,7 @@ title:      CentOS7 yum安装svn服务
 subtitle:   CentOS7 yum安装svn服务
 date:       2018-10-25
 author:     fengdi
-header-img: img/post-bg-lol.jpg
+header-img: img/post-bg-map.jpg
 catalog: true
 tags:
     - CentOS
