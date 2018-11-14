@@ -13,33 +13,29 @@ tags:
     - 数据库
 ---
 
->1.进入到要存放安装包的位置
+### 1.进入到要存放安装包的位置
 >
 >```
 >cd /home/lnmp
 >```
->
->2.查看系统中是否已安装 MySQL 服务，以下提供两种方式：
->
+
+### 2.查看系统中是否已安装 MySQL 服务，以下提供两种方式：
 >```
 >rpm -qa | grep mysql
 >yum list installed | grep mysql
 >```
->
->3.如果已安装则删除 MySQL 及其依赖的包：
->
+
+### 3.如果已安装则删除 MySQL 及其依赖的包：
 >```
 >yum -y remove mysql-libs.x86_64
 >```
->
->4.下载 mysql57-community-release-el7-8.noarch.rpm 的 YUM 源：
->
+
+### 4.下载 mysql57-community-release-el7-8.noarch.rpm 的 YUM 源：
 >```
 >wget http://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm
 >```
->
->5.安装 mysql57-community-release-el7-8.noarch.rpm：
->
+
+### 5.安装 mysql57-community-release-el7-8.noarch.rpm：
 >```
 >rpm -ivh mysql57-community-release-el7-8.noarch.rpm
 >```
@@ -48,9 +44,8 @@ tags:
 >
 >mysql-community.repo
 >mysql-community-source.repo
->
->6.安装 MySQL，出现提示的话，一路 Y 到底
->
+
+### 6.安装 MySQL，出现提示的话，一路 Y 到底
 >```
 >yum install mysql-server
 >```
@@ -67,9 +62,8 @@ tags:
 >```
 >A temporary password is generated for root@localhost: hilX0U!9i3_6
 >```
->
->7.登录到 MySQL 服务端并更新用户 root 的密码：
->
+
+### 7.登录到 MySQL 服务端并更新用户 root 的密码：
 >注意：由于 MySQL5.7 采用了密码强度验证插件 validate_password，故此我们需要设置一个有一定强度的密码；
 >
 >```
@@ -106,11 +100,8 @@ tags:
 >OK，输入 exit 后用新密码再次登录看看吧！
 >
 >注意：如果用远程工具还是连接不上，试试用 iptables -F   命令来清除防火墙中链中的规则
->
-> 
->
->8.MySQL控制命令：启动、停止、重启、查看状态
->
+
+### 8.MySQL控制命令：启动、停止、重启、查看状态
 >```
 >service mysqld start
 >service mysqld stop
@@ -122,9 +113,8 @@ tags:
 >service mysqld restart
 >systemctl status mysqld
 >```
->
->9.设置 MySQL 的字符集为 UTF-8：
->
+
+### 9.设置 MySQL 的字符集为 UTF-8：
 >打开 /etc 目录下的 my.cnf 文件（此文件是 MySQL 的主配置文件）：
 >
 >```
@@ -146,12 +136,11 @@ tags:
 >
 >**重启mysql后**再登录，看看字符集，6个utf8就算OK
 >
->```
->show variables like '%character%';
->```
->
->10.查看指定的数据库中指定数据表的字符集，如查看 mysql 数据库中 servers 表的字符集：
->
+>```>
+>sho>ike '%character%';
+>```>
+
+### 10.查看指定的数据库中指定数据表的字符集，如查看 mysql 数据库中 servers 表的字符集：
 >```
 >show table status from mysql like '%servers%';
 >```
@@ -161,9 +150,8 @@ tags:
 >```
 >show full columns from servers;
 >```
->
->11.忘记密码时，可用如下方法重置：
->
+
+### 11.忘记密码时，可用如下方法重置：
 >```
 >service mysqld stop
 >mysqld_safe --user=root --skip-grant-tables --skip-networking &
@@ -177,9 +165,8 @@ tags:
 >update user set password=password("new_password") where user="root"; 
 >flush privileges;
 >```
->
->12.一些文件的存放目录
->
+
+### 12.一些文件的存放目录
 >配置文件
 >
 >```
@@ -209,9 +196,8 @@ tags:
 >```
 >/var/run/mysqld/mysqld.pid
 >```
->
->13.MySQL 采用的 TCP/IP 协议传输数据，默认端口号为 3306，我们可以通过如下命令查看：
->
+
+### 13.MySQL 采用的 TCP/IP 协议传输数据，默认端口号为 3306，我们可以通过如下命令查看：
 >```
 >netstat -anp
 >```

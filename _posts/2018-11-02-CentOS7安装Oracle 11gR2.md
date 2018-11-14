@@ -13,13 +13,10 @@ tags:
 ---
 
 >Oracle 在Linux和window上的安装不太一样，公司又是Linux系统上的Oracle，实在没辙，研究下Linux下Oracle的使用，oracle默认不支持CentOS系统安装，所以安装的时候，需要修改部分属性，先参考同行博客和自己安装实践，总结下安装流程。编辑之处，如有缺失，欢迎拍砖....
->
->准备工作
->
+
 >1、下载Oracle安装包：[linux.x64_11gR2_database_1of2.zip](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html) 和 [linux.x64_11gR2_database_2of2.zip](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/112010-linx8664soft-100572.html) ，可以下载到本地，通过ftp服务上传到Linux系统（[参考CentOS7 FTP服务器搭建](http://www.cnblogs.com/xibei666/p/5934659.html)），也可以使用Linux系统的wget命令，下载文件包；
 >
->2、创建运行oracle数据库的系统用户和用户组：
->
+### 2、创建运行oracle数据库的系统用户和用户组：
 >用Root账号登录，运行下面指令，创建所需要用户和用户组，[分组原因参考网址](http://www.oracle.com/technetwork/cn/articles/hunter-rac11gr2-iscsi-2-092412-zhs.html#13)
 >
 >```
@@ -31,7 +28,7 @@ tags:
 >id oracle                   　　　　　　 #查看新建的oracle用户
 >```
 >
->3、创建oracle数据库安装目录（运行下面指令，创建账号和分配权限）
+### 3、创建oracle数据库安装目录（运行下面指令，创建账号和分配权限）
 >
 >```
 > mkdir -p /data/oracle　　#oracle数据库安装目录
@@ -43,18 +40,16 @@ tags:
 > chown -R oracle:oinstall /data/oraInventory
 > chown -R oracle:oinstall /data/database
 >```
->
->4、修改OS系统标识
->
+
+### 4、修改OS系统标识
 > oracle默认不支持CentOS系统安装， 修改文件 /etc/[RedHat](http://www.linuxidc.com/topicnews.aspx?tid=10)-release 内容为RedHat-7
 >
 >```
 >vi /etc/redhat-release#修改成红色部分文字
 >redhat-7
 >```
->
->5.安装oracle数据库所需要的软件包
->
+
+### 5.安装oracle数据库所需要的软件包
 > 以下是按照需要依赖的安装包，通过 yum install {包名} 来验证是否安装，例如yum install binutils
 >
 >```
@@ -84,17 +79,14 @@ tags:
 >make-3.82-19.el7.x86_64 
 >sysstat-10.1.5-1.el7.x86_64
 >```
->
 > 使用下面指令，检查依赖软件包
->
 >```
 >yum install binutils-2.* compat-libstdc++-33* elfutils-libelf-0.* elfutils-libelf-devel-* gcc-4.* gcc-c++-4.* glibc-2.* glibc-common-2.* glibc-devel-2.* glibc-headers-2.* ksh-2* libaio-0.* libaio-devel-0.* libgcc-4.* libstdc++-4.* libstdc++-devel-4.* make-3.* sysstat-7.* unixODBC-2.* unixODBC-devel-2.* pdksh*
 >```
 >
->6、关闭防火墙和selinux，[具体操作可参考博客](http://www.cnblogs.com/xibei666/p/5934659.html)
->
->7、修改内核参数
->
+### 6、关闭防火墙和selinux，[具体操作可参考博客](http://www.cnblogs.com/xibei666/p/5934659.html)
+
+### 7、修改内核参数
 >```
 >vi /etc/sysctl.conf #红色部分是要添加sysctl.conf内容
 >
@@ -112,9 +104,8 @@ tags:
 >net.core.wmem_default= 262144
 >net.core.wmem_max= 1048576
 >```
->
->8、对oracle用户设置限制，提高软件运行性能（红色为添加部分）
->
+
+### 8、对oracle用户设置限制，提高软件运行性能（红色为添加部分）
 >```
 >vi /etc/security/limits.conf  #红色部分要添加到Limits.conf内容
 >
@@ -123,9 +114,8 @@ tags:
 >oracle soft nofile 1024
 >oracle hard nofile 65536
 >```
->
->9、配置用户的环境变量（红色部分为添加代码）
->
+
+### 9、配置用户的环境变量（红色部分为添加代码）
 >```
 >vi /home/oracle/.bash_profile  #红色部分是要追加bash_profile内容部分
 >
@@ -140,9 +130,8 @@ tags:
 >```
 >
 > 配置完成，:wq!保存退出，运行source /home/oracle/.bash_profile时上述配置生效
->
->10、获取安装包文件后解压安装包
->
+
+### 10、获取安装包文件后解压安装包
 > 获取安装包文件的方式，[可通过ftp服务器](http://www.cnblogs.com/xibei666/p/5934659.html)，也可通过wget下载到指定目录，解压方式如下
 >
 >```
