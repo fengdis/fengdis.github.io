@@ -144,11 +144,11 @@ tags:
 >
 >1、oracle用户登录系统，使用命令行跳转到data/database/database目录下，输入./runInstaller 调出安装页面；
 >
-![](https://images2015.cnblogs.com/blog/433460/201610/433460-20161006232532176-49357099.png)
+![](http://images2015.cnblogs.com/blog/433460/201610/433460-20161006232532176-49357099.png)
 >
 >2、调出安装页面，点击下一步进行安装，我选择仅数据库服务安装
 >
-![](https://images2015.cnblogs.com/blog/433460/201610/433460-20161006232627395-1837007543.png)
+![](http://images2015.cnblogs.com/blog/433460/201610/433460-20161006232627395-1837007543.png)
 >
 >像window安装Oracle安装一样，此处不再重复介绍。
 >
