@@ -5,16 +5,16 @@ header-img: img/post-bg-coffee.jpeg
 email: fengdis@gmail.com
 description: "Every failure is leading towards success."
 keyword: "Blog, 个人博客, fengdi, fengdis, java"
-url: "http://fengdis.github.io"           # your host, for absolute URL
-baseurl: ""                               # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/fengdis/fengdis.github.io.git"  # you code repository
+url: "http://fengdis.github.io"             # your host, for absolute URL
+baseurl: ""                                 # for example, '/blog' if your blog hosted on 'host/blog'
+github_repo: "https://github.com/fengdis/fengdis.github.io.git"     # you code repository
 #timezone: Asia/Shanghai
 
 
 # Sidebar settings
-sidebar: true                            # whether or not using Sidebar.
+sidebar: true                               # whether or not using Sidebar.
 sidebar-about-description: "Goals determine what you going to be."
-sidebar-avatar: /img/avatar.jpg       # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar.jpg             # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # SNS settings
@@ -22,13 +22,12 @@ RSS: false
 twitter_username:   fengdis
 facebook_username:  100025268520773
 github_username:    fengdis
-#jianshu_username:   a38652f01aa0
+#jianshu_username:  a38652f01aa0
 zhihu_username:     fengdis
-#weibo_username:     3858931597
-#linkedin_username:  fengdis
-#weixin_username:  fengdis
-mail_address: fengdis@163.com
-
+#weibo_username:    3858931597
+#linkedin_username: fengdis
+#weixin_username:   fengdis
+mail_address:       fengdis@163.com
 
 
 # Build settings
@@ -39,12 +38,9 @@ exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
 
-
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
 gems: [jekyll-paginate]
-
-
 
 
 # Markdown settings
@@ -57,15 +53,14 @@ kramdown:
   input: GFM                            # use Github Flavored Markdown !important
 
 
+# Disqus setttings 国内较慢
+#Disqus（https://disqus.com/）
+#disqus_username: fengdis
 
-# 评论系统 Disqus国外较慢
-# Disqus（https://disqus.com/）
-# disqus_username: fengdis
-
-# Netease setttings
+# Netease setttings 网易云跟帖（目前关闭）
 netease_comment: false
 
-# Gitalk Gitalk国内较快
+# Gitalk setttings 国内较快
 gitalk:
   enable: true                          #是否开启Gitalk评论
   clientID: 81ae4e28e4e2bde026c4                            #生成的clientID
@@ -73,25 +68,21 @@ gitalk:
   repo: fengdis.github.io               #仓库名称
   owner: fengdis                        #github用户名
   admin: fengdis                        #仓库管理员（可配置多个）
-  distractionFreeMode: true           #是否启用类似FB的阴影遮罩
+  distractionFreeMode: true             #是否启用类似FB的阴影遮罩
 
 
-# 统计
 # Analytics settings
 # Baidu Analytics
 ba_track_id: 456cee4a16093ac54c79fdb531a624b4
 
 # Google Analytics
-ga_track_id: 'UA-127807989-1'           # Format: UA-xxxxxx-xx
-ga_domain: blog.fengdis.com             # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
-
-
+ga_track_id: 'UA-127807989-1'           #Format: UA-xxxxxx-xx
+ga_domain: blog.fengdis.com             #默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
 
 
 # Featured Tags
-featured-tags: true                     # 是否使用首页标签
-featured-condition-size: 1             # 相同标签数量大于这个数，才会出现在首页
-
+featured-tags: true                     #是否使用首页标签
+featured-condition-size: 1              #相同标签数量大于这个数，才会出现在首页
 
 
 # Progressive Web Apps
@@ -99,11 +90,10 @@ chrome-tab-theme-color: "#000000"
 service-worker: true
 
 
-
 # Friends
 friends: [
     {
-        title: "Blog",
+        title: "个人主页",
         href: "http://www.fengdis.com/blog"
     },{
         title: "简书",
