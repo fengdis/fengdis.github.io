@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      CentOS-7下RocketMQ安装与配置
-subtitle:   CentOS-7下RocketMQ安装与配置
+title:      CentOS 7下RocketMQ安装与配置
+subtitle:   CentOS 7下RocketMQ安装与配置
 date:       2018-12-06
 author:     fengdi
 header-img: img/post-bg-code5.jpg
@@ -88,7 +88,19 @@ vim /etc/profile
 
 #### 5.2、启动Broker
 
+配置conf/broker.conf
+
+    # brokerIP1和brokerIP2默认获取本地ip地址,在云服务器上会获取内网ip地址,因此必须显式设置,其中brokerIP1和brokerIP2修改为自己云服务器的外网地址. 
+    brokerIP1=*.*.*.*
+    brokerIP2=*.*.*.*
+    # 将namesrvAddr设置在broker.conf中
+    namesrvAddr=localhost:9876
+
+启动
+
     nohup sh bin/mqbroker -n localhost:9876 &
+    或
+    nohup mqbroker -c /usr/local/conf/broker.conf &
     tail -f ~/logs/rocketmqlogs/broker.log
 
 日志中出现如下信息则启动成功：
