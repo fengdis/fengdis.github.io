@@ -90,7 +90,7 @@ vim /etc/profile
 
 配置conf/broker.conf
 
-    # brokerIP1和brokerIP2默认获取本地ip地址,在云服务器上会获取内网ip地址,因此必须显式设置,其中brokerIP1和brokerIP2修改为自己云服务器的外网地址. 
+    # brokerIP1和brokerIP2默认获取本地ip地址,如果不显式设置在云服务器上会获取内网ip地址,因此必须显式设置,其中brokerIP1和brokerIP2修改为自己云服务器的外网地址 
     brokerIP1=*.*.*.*
     brokerIP2=*.*.*.*
     # 将namesrvAddr设置在broker.conf中
@@ -143,13 +143,13 @@ RocketMQ有一个对其扩展的开源项目incubator-rocketmq-externals，这�
 新建一个rocketmq-console-ng.bat文件（与上面生成的rocketmq-console-ng-1.0.0.jar在同一个目录），内容如下：
 
     @echo off
-    java -jar rocketmq-console-ng-1.0.0.jar --server.port=12581 --rocketmq.config.namesrvAddr=10.89.0.64:9876;10.89.0.65:9876
+    java -jar rocketmq-console-ng-1.0.0.jar --server.port=12581 --rocketmq.config.namesrvAddr=localhost:9876;10.89.0.65:9876
     @pause
 
 -linux下
 新建一个rocketmq-console-ng.sh文件
 
-    java -jar rocketmq-console-ng-1.0.0.jar --server.port=12581 --rocketmq.config.namesrvAddr=10.89.0.64:9876;10.89.0.65:9876
+    java -jar rocketmq-console-ng-1.0.0.jar --server.port=12581 --rocketmq.config.namesrvAddr=localhost:9876;10.89.0.65:9876
 
 这里注意需要设置两个参数：--server.port为运行的这个web应用的端口，如果不设置的话默认为8080；--rocketmq.config.namesrvAddr为RocketMQ命名服务地址，如果不设置的话默认为“”。
 
