@@ -4,7 +4,7 @@ SEOTitle: 个人博客 | Blog
 header-img: img/post-bg-coffee.jpeg
 email: fengdis@gmail.com
 description: "Every failure is leading towards success."
-keyword: "Blog, 个人博客, fengdi, fengdis, java"
+keyword: "封迪, 个人博客, fengdi, fengdis, 程序员"
 url: "http://fengdis.github.io"             # your host, for absolute URL
 baseurl: ""                                 # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/fengdis/fengdis.github.io.git"     # you code repository
@@ -78,6 +78,8 @@ ba_track_id: 456cee4a16093ac54c79fdb531a624b4
 # Google Analytics
 ga_track_id: 'UA-127807989-1'           #Format: UA-xxxxxx-xx
 ga_domain: blog.fengdis.com             #默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
+
+baidu_push: true
 
 
 # Featured Tags
