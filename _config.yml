@@ -80,8 +80,6 @@ ga_track_id: 'UA-127807989-1'           #Format: UA-xxxxxx-xx
 ga_domain: blog.fengdis.com             #默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
 
 baidu_push: true
-baidu_push_id: amwrdtLnzB
-
 
 # Featured Tags
 featured-tags: true                     #是否使用首页标签
