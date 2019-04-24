@@ -1,6 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
-*.js linguist-language=markdown
-*.css linguist-language=markdown
-*.html linguist-language=markdown
+*.js linguist-language=Html
+*.css linguist-language=Html
+*.html linguist-language=Html
