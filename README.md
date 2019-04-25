@@ -130,7 +130,7 @@ featured-condition-size: 1     # A tag will be featured if the size of it is mor
 
 	# SNS settings
 	RSS: false
-	jianshu_username: 	jianshu_id 
+	jianshu_username: 	username 
 	zhihu_username:     username
 	facebook_username:  username
 	github_username:    username
@@ -202,7 +202,7 @@ iframe在不同的设备中，将会自动的调整大小。保留内边距是�
 ```
 # 评论系统
 # Disqus（https://disqus.com/）
-disqus_username: qiubaiying
+disqus_username: fengdis
 ```
 
 #### Gitalk
@@ -211,10 +211,6 @@ disqus_username: qiubaiying
 
 缺点：配置比较繁琐，每篇文章的评论都需要初始化。
 
-**使用：**
-
-参考我的这篇文章：[《为博客添加 Gitalk 评论插件》](http://qiubaiying.top/2017/12/19/%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0-Gitalk-%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/)
-
 
 ### Analytics
 
@@ -222,10 +218,10 @@ disqus_username: qiubaiying
 
 ```
 # Baidu Analytics
-ba_track_id: 456cee4a16093ac54c79fdb531a624b4
+ba_track_id: 456cee4a16093ac54c79fdb531axxxxx
 
 # Google Analytics
-ga_track_id: 'UA-127807989-1'            # 你用Google账号去注册一个就会给你一个这样的id
+ga_track_id: 'UA-xxxxxxxxx-1'            # 你用Google账号去注册一个就会给你一个这样的id
 ga_domain: fengdis.com			# 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto。
 ```
 
@@ -277,5 +273,5 @@ ga_domain: fengdis.com			# 默认的是 auto, 这里我是自定义了的域名�
 
 ## License
 
-遵循 MIT 许可证。有关详细,请参阅 [LICENSE](https://github.com/qiubaiying/qiubaiying.github.io/blob/master/LICENSE)。
+遵循 MIT 许可证。有关详细,请参阅 [LICENSE](https://github.com/fengdis/fengdis.github.io/blob/master/LICENSE)。
 
