@@ -4,6 +4,7 @@
 
 ![](https://raw.githubusercontent.com/fengdis/fengdis.github.io/master/img/readme-home.jpg)
 
+[![Build Status](https://travis-ci.org/fengdis/fengdis.github.io.svg?branch=master)](https://travis-ci.org/fengdis/fengdis.github.io)
 [![codebeat badge](https://codebeat.co/badges/5f031df3-f6c1-4ec0-911a-ff6617ca50b9)](https://codebeat.co/projects/github-com-fengdis-fengdis-github-io-master)
 [![GitHub issues](https://img.shields.io/github/issues/fengdis/fengdis.github.io.svg?style=flat)](https://github.com/fengdis/fengdis.github.io/issues)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/fengdis/fengdis.github.io/blob/master/LICENSE)
