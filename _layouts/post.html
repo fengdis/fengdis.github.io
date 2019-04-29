@@ -235,11 +235,11 @@ layout: default
 <script type="text/javascript">
     var ShareURL = "";
     //绑定所有分享按钮所在A标签的鼠标移入事件，从而获取动态ID
-    $(function () {
-    $(".bdsharebuttonbox a").mouseover(function () {
-        ShareURL = $(this).attr("data-url");
+    /*$(function () {
+        $(".bdsharebuttonbox a").mouseover(function () {
+            ShareURL = $(this).attr("data-url");
         });
-    });
+    });*/
 
     function SetConfig(cmd, config) {
         if (ShareURL) {
