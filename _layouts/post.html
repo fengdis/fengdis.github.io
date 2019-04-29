@@ -230,6 +230,73 @@ layout: default
 <!-- disqus 公共JS代码 end -->
 {% endif %}
 
+{% if site.disqus_username %}
+<!-- 百度分享 begin -->
+<script type="text/javascript">
+    var ShareURL = "";
+    //绑定所有分享按钮所在A标签的鼠标移入事件，从而获取动态ID
+    $(function () {
+    $(".bdsharebuttonbox a").mouseover(function () {
+    ShareURL = $(this).attr("data-url");
+    });
+    });
+
+    function SetConfig(cmd, config) {
+    if (ShareURL) {
+    config.bdUrl = ShareURL;
+    }
+    config.bgText = shareText;
+    config.bgDesc = shareText;
+    config.bgPic = sharePic;
+    return config;
+    }
+
+    //插件的配置部分，注意要记得设置onBeforeClick事件，主要用于获取动态的文章ID
+    window._bd_share_config = {
+    "common": {
+    "bdSnsKey": {},
+    "bdText": "",
+    "bdDesc": "",
+    "bdMini": "2",
+    "bdMiniList": false,
+    "bdPic": "",
+    "bgSign": "normal",
+    "bdStyle": "0",
+    "bdSize": "24",
+    "onBeforeClick": SetConfig
+    //onAfterClick: SetConfig
+    },
+    "share": {
+    //此处放置分享按钮设置
+    },
+    "image": [{
+    "tag" : "share_img",
+    "viewType" : 'list',
+    "viewPos" : 'top',
+    "viewColor" : 'black',
+    "viewSize" : '16',
+    "viewList": ["weixin", "sqq", "tsina", "tqq", "qzone"],
+    "viewText": "分享到:"
+    }],
+    "selectShare": [{
+    "bdSelectMiniList" : ["weixin", "sqq", "tsina", "tqq", "qzone"],
+    "bdContainerClass" : "share_info"
+    }],
+    "slide" : [{
+    "bdImg" : 2,
+    "bdPos" : "left",
+    "bdTop" : 300
+    }]
+    };
+    //插件的JS加载部分
+    with (document) 0[(getElementsByTagName('head')[0] || body)
+    .appendChild(createElement('script'))
+    .src = '//www.fengdis.com/static/api/js/share.js?v=89860593.js?cdnversion='
+    + ~(-new Date() / 36e5)];
+</script>
+<!-- 百度分享 end -->
+{% endif %}
+
 
 {% if site.anchorjs %}
 <!-- async load function -->

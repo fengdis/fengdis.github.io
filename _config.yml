@@ -70,6 +70,8 @@ gitalk:
   admin: fengdis                        #仓库管理员（可配置多个）
   distractionFreeMode: true             #是否启用类似FB的阴影遮罩
 
+# Baidu Share 百度分享
+baidu_share: true
 
 # Analytics settings
 # Baidu Analytics
