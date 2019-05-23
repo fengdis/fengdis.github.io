@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      本地git与github等远程服务空间的代码操作
-subtitle:   本地git与github等远程服务空间的代码操作
+title:      本地git上传代码到github等远程服务空间
+subtitle:   本地git上传代码到github等远程服务空间
 date:       2019-03-31
 author:     fengdi
 header-img: img/post-bg-others7.jpg
