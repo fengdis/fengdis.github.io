@@ -16,7 +16,7 @@ tags:
 ### 1、问题描述与分析
 - Caused by: com.mysql.jdbc.PacketTooBigException: Packet for query is too large (1354 > 1024). You can change this value on the server   
 by setting the max_allowed_packet' variable
-- MySQL根据配置文件会限制Server接受的数据包大小（默认1024，即1）。有时候插入、更新或查询时数据包的大小，会受 max_allowed_packet 参数限制，导致操作失败。针对该问题，需要在服务器上设置mysql的相应参数为合适的值就能解决问题。(该参数为max_allowed_packet)
+- MySQL根据配置文件会限制Server接受的数据包大小（默认1024，即1M）。有时候插入、更新或查询时数据包的大小，会受 max_allowed_packet 参数限制，导致操作失败。针对该问题，需要在服务器上设置mysql的相应参数为合适的值就能解决问题。(该参数为max_allowed_packet)
 
 ### 2、问题解决方法
 #### 2.1、首先登录到mysql数据库上,查看目前max_allowed_packet配置大小
