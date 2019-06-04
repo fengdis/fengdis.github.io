@@ -4,7 +4,7 @@ title:      MySQL Packet for query is too large问题及解决方法
 subtitle:   MySQL Packet for query is too large问题及解决方法
 date:       2019-06-04
 author:     fengdi
-header-img: img/post-bg-code11.png
+header-img: img/post-bg-alibaba.jpg
 catalog: true
 tags:
     - mysql
