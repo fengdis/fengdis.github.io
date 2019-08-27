@@ -13,12 +13,18 @@ tags:
 ---
 
 ### 1、下载安装包
-可以选在在windows上提前下载，sftp到linux上，或者使用wget直接在linux上下载
+可以选在在windows或macos上提前下载，sftp到linux上
+
+[官网](https://www.apache.org/dyn/closer.cgi?path=rocketmq)下载或者在[github](https://github.com/apache/rocketmq/releases)下载
+
+也可以使用wget直接在linux上下载
 
     wget http://mirrors.hust.edu.cn/apache/rocketmq/4.2.0/rocketmq-all-4.3.2-bin-release.zip
+    
+下载带source的源码需要自己编译，下载带bin的二进制文件不需编译可直接使用
 
 ### 2、安装
-我们下载的是编译后的版本，省略编译步骤，直接创建一个rocketmq的文件夹
+#### 2.1、如果下载的是编译后的版本，省略编译步骤，直接创建一个rocketmq的文件夹
 
     mkdir -p /usr/local/rocketmq
 解压：
@@ -28,6 +34,20 @@ tags:
 注意：如果解压unzip报错command not found的，请安装unzip，安装之后再次执行解压步骤
 ​    
     yum install unzip
+  
+#### 2.2、如果下载的是未编译的源码版本，需要需进行编译
+进入项目根目录
+
+    cd xxx
+    
+使用Maven来编译整个项目（RocketMQ是java开发），官方推荐命令
+
+    mvn -Prelease-all -DskipTests clean install -U
+    
+编译完成后进入到distribution/target/apache-rocketmq目录
+
+    cd distribution/target/apache-rocketmq
+    
 
 ### 3、环境测试
 首先进入rocketmq文件夹中：
@@ -123,6 +143,10 @@ RocketMQ有一个对其扩展的开源项目incubator-rocketmq-externals，这�
 通过命令行进入到rocketmq-console子目录，通过maven对其进行编译打包，
 
     mvn package
+    
+注：在打包的时候发现有测试类不通过导致无法完成打包，需要在打包时跳过测试类的编译和运行
+
+    mvn package -Dmaven.test.skip=true
 
 如下图：
 
@@ -146,7 +170,7 @@ RocketMQ有一个对其扩展的开源项目incubator-rocketmq-externals，这�
     java -jar rocketmq-console-ng-1.0.0.jar --server.port=12581 --rocketmq.config.namesrvAddr=localhost:9876;10.89.0.65:9876
     @pause
 
--linux下
+-linux或macos下
 新建一个rocketmq-console-ng.sh文件
 
     java -jar rocketmq-console-ng-1.0.0.jar --server.port=12581 --rocketmq.config.namesrvAddr=localhost:9876;10.89.0.65:9876
