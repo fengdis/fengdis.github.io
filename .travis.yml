@@ -9,5 +9,8 @@ script:
   - jekyll build
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  webhooks: https://oapi.dingtalk.com/robot/send?access_token=a79b9667d6aaeef09519193813020206ecc13529a940b9961d1d9ecbbde1e23f
   
 
