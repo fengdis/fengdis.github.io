@@ -97,7 +97,7 @@ service-worker: true
 friends: [
     {
         title: "个人主页",
-        href: "http://www.fengdis.com/blog"
+        href: "http://www.fengdis.com"
     },{
         title: "简书",
         href: "http://www.jianshu.com/u/a38652f01aa0"
