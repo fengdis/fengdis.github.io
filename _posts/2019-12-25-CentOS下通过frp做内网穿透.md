@@ -54,8 +54,7 @@ server_port = 7000      #frp服务端端口，即填写服务端配置中的 bin
 type = tcp              #连接类型，填tcp或udp
 local_ip = 127.0.0.1    #填127.0.0.1或内网ip都可以
 local_port = 22         #需要转发到的端口，ssh端口是22
-remote_port = 6000      #frp服务端的远程监听端口，即你访问服务端的remote_port就相当于访
-                        #问客户端的 local_port，如果填0则会随机分配一个端口
+remote_port = 6000      #frp服务端的远程监听端口，即你访问服务端的remote_port就相当于访问客户端的 local_port，如果填0则会随机分配一个端口
 ```
 
 ### 4、运行
