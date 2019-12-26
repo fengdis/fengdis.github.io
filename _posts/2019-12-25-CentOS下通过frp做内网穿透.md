@@ -7,10 +7,11 @@ author:     fengdi
 header-img: img/post-bg-code5.jpg
 catalog: true
 tags:
-    - jmeter
+    - frp
+    - 内网穿透
 ---
 
->近期服务器经常被暴力扫描、攻击, 故花时间处理服务器端口暴力扫描问题, 将一些可能存在的风险处理掉. 以下从内网穿透方面阐述
+>近期服务器经常被暴力扫描、攻击，故花时间处理服务器端口暴力扫描问题，将一些可能存在的风险处理掉. 以下从内网穿透方面解决问题
 
 ### 1、前言
  - 为阻止服务器被暴力扫描、攻击，防火墙可以采用白名单策略, 只开放必要端口. 如80/443以及ssh登录端口。
@@ -39,12 +40,14 @@ tags:
 ### 3、配置
 就是需要修改配置文件 frps.ini 及 frpc.ini
 - 修改公网服务器上的服务端配置文件 frps.ini，如下：
+
 ```$xslt
 [common]
 bind_port = 7000        #frp服务端端口（必须）
 ```
 
 - 修改内网目标主机的客户端配置文件 frpc.ini，如下：
+
 ```$xslt
 [common]
 server_addr = xxx.xxx.xxx.xxx   #frp服务端地址，必须是公网ip或者域名，这里假设为xxx.xxx.xxx.xxx
@@ -59,6 +62,7 @@ remote_port = 6000      #frp服务端的远程监听端口，即你访问服务�
 
 ### 4、运行
 - 在公网服务器上运行服务端程序：
+
 ```$xslt
 $ nohup ./frps -c frps.ini &
 
@@ -71,6 +75,7 @@ $ tail -f nohup.out
 ```
 
 - 在内网目标主机上运行客户端程序：
+
 ```$xslt
 $ nohup ./frpc -c frpc.ini &
 
@@ -103,6 +108,7 @@ remote_port = 6001         <==不同点
 ```
 
 在两个内网机器上分别运行 frpc 客户端程序后，一般就可以通过以下的方法 ssh 登录：
+
 ```$xslt
 内网机器1：
 $ ssh -p 6000 user_name1@server_addr
@@ -114,6 +120,7 @@ $ ssh -p 6001 user_name2@server_addr
 
 ### 6、connection timed out 解决
 有时候会发现按照以上的配置还是使 frp 的服务端与客户端建立连接，在客户端上会出现以下错误：
+
 ```$xslt
 2018/09/17 22:02:23 [W] [control.go:113] login to server failed: dial tcp xxx.xxx.xxx.xxx:7000: connect: connection timed out
 dial tcp xxx.xxx.xxx.xxx:7000: connect: connection timed out
@@ -121,6 +128,7 @@ dial tcp xxx.xxx.xxx.xxx:7000: connect: connection timed out
 从以下两个方面检查问题：
 - 服务器防火墙
 服务器放行frp服务端口、代理端口
+
 ```$xslt
 开放端口
 firewall-cmd --zone=public --add-port=7000/tcp --permanent

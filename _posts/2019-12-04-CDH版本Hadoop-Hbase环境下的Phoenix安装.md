@@ -7,7 +7,10 @@ author:     fengdi
 header-img: img/post-bg-code7.jpg
 catalog: true
 tags:
-    - jmeter
+    - Hadoop
+    - Hbase
+    - Phoenix
+    - cdh
 ---
 
 >hadoop环境下列式数据库hbase的关系型数据层
