@@ -75,7 +75,8 @@ baidu_share: true
 
 # Analytics settings
 # Baidu Analytics
-ba_track_id: 456cee4a16093ac54c79fdb531a624b4
+ba_track_id: 06d7b275f0f6891f9380da0948fbb051
+# 456cee4a16093ac54c79fdb531a624b4
 
 # Google Analytics
 ga_track_id: 'UA-127807989-1'           #Format: UA-xxxxxx-xx
